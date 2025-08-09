@@ -18,6 +18,41 @@ def multiplicacao(num, num2):
 def divisao(num, num2):
      return num/num2
 
+#Método pra simular valor de um emprestimo By Hitiro Tsugawa
+def calcula_taxa_real (taxa):
+    return taxa/100
+
+def calacular_valor(valor, taxa_real, intervalo):
+    return valor * (1+(taxa_real)) ** intervalo
+
+def calcula_valor_mensal(juros_composto, intervalo):
+    try:
+        return juros_composto/intervalo
+    except:
+        print('Não é possível dividir por zero \'0\'')
+
+def simulacao_emprestimo():
+    valor = float(input('Digite o Valor: '))
+    taxa = float(input('Digite a taxa : '))
+    intervalo = int(input('Digite o intervalo em meses: '))
+
+    if valor <= 0: return print('Não é possivel realiar um emprestimo com valor negativo.')
+
+    taxa_real = calcula_taxa_real(taxa)
+    juros_composto = calacular_valor(valor, taxa_real, intervalo)
+    valor_mensal = calcula_valor_mensal(juros_composto, intervalo)
+
+    try:
+        print("Você vai pagar o total de: R$", round(juros_composto, 2))
+        print("Você vai pagar por mes: R$", round(valor_mensal, 2))
+    except:
+        print('Algo deu errado por aqui!')
+        
+
+    print('-' * 50)
+    print('Que tal um novo emprestimo, amigo?')
+    return
+
 
 while True:
     calcular = input("Olá, bem vindo a nossa calculadora! \n\nInforme a ação desejada:\n\n" \
